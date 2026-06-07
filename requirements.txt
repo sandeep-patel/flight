@@ -1,0 +1,7 @@
+# Runtime dependencies (also declared in pyproject.toml).
+# Pin loosely; the Docker image and CI resolve exact versions.
+playwright>=1.44
+pydantic>=2.6
+pydantic-settings>=2.2
+httpx>=0.27
+tenacity>=8.2

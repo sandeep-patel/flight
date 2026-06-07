@@ -1,0 +1,18 @@
+services:
+  flight-tracker:
+    build: .
+    image: flight-tracker:latest
+    container_name: flight-tracker
+    restart: unless-stopped
+    env_file:
+      - .env
+    # Override the image default (single console check) to poll and alert
+    # via Telegram. Remove the command to use the image default instead.
+    command: ["--interval", "1800"]
+    volumes:
+      # Persist failure screenshots for debugging selector changes.
+      - ./screenshots:/app/screenshots
+      # To use an authenticated Qantas session, place the JSON in ./data,
+      # set QANTAS_STORAGE_STATE=data/qantas_session.json in .env, and
+      # uncomment the mount below.
+      # - ./data:/app/data:ro
